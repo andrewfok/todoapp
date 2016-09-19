@@ -11,9 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.CursorAdapter;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
@@ -34,12 +32,13 @@ public class MainActivity extends Activity {
             db = todoDatabaseHelper.getReadableDatabase();
             todoCursor = db.query("TODO", new String[] {"_id", "TITLE"}, null, null, null, null, null);
 
-            CursorAdapter todoAdapter = new SimpleCursorAdapter(
-                    MainActivity.this,
-                    android.R.layout.simple_list_item_1,
-                    todoCursor,
-                    new String[]{"TITLE"},
-                    new int[] {android.R.id.text1}, 0);
+            CustomCursorAdapter todoAdapter = new CustomCursorAdapter(this, todoCursor);
+//            CursorAdapter todoAdapter = new SimpleCursorAdapter(
+//                    MainActivity.this,
+//                    android.R.layout.simple_list_item_1,
+//                    todoCursor,
+//                    new String[]{"TITLE"},
+//                    new int[] {android.R.id.text1}, 0);
 
             todoList.setAdapter(todoAdapter);
 
