@@ -37,5 +37,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Submit New Todo"
-        android:id="@+id/submit_button" />
+        android:id="@+id/submit_button"
+        android:onClick="onSubmitClicked"/>
 </RelativeLayout>

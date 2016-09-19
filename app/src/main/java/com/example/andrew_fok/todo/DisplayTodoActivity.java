@@ -39,6 +39,7 @@ public class DisplayTodoActivity extends Activity {
                 TextView description = (TextView)findViewById(R.id.description);
                 description.setText(descriptionText);
             }
+            
             cursor.close();
             db.close();
 
