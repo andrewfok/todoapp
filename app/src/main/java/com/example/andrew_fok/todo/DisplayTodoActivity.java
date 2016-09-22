@@ -23,6 +23,7 @@ public class DisplayTodoActivity extends Activity {
         try {
             SQLiteOpenHelper todoDatabaseHelper = new TodoDatabaseHelper(this);
             SQLiteDatabase db = todoDatabaseHelper.getReadableDatabase();
+
             Cursor cursor = db.query("TODO",
                     new String[] {"TITLE", "DESCRIPTION"},
                     "_id = ?",
@@ -39,7 +40,7 @@ public class DisplayTodoActivity extends Activity {
                 TextView description = (TextView)findViewById(R.id.description);
                 description.setText(descriptionText);
             }
-            
+
             cursor.close();
             db.close();
 

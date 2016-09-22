@@ -5,8 +5,10 @@ import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -27,9 +29,18 @@ public class CustomCursorAdapter extends CursorAdapter {
     }
 
     @Override
-    public void bindView(View view, Context context, Cursor cursor) {
+    public void bindView(View view, final Context context, final Cursor cursor) {
         TextView item_string = (TextView) view.findViewById(R.id.list_item_string);
-        String title = cursor.getString(cursor.getColumnIndexOrThrow("TITLE"));
+        Button share = (Button) view.findViewById(R.id.share_btn);
+        Button delete = (Button) view.findViewById(R.id.delete_btn);
+        final int pos = cursor.getPosition();
+        final String title = cursor.getString(cursor.getColumnIndexOrThrow("TITLE"));
         item_string.setText(title);
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context,"current Pos is "+pos+" "+title,Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
